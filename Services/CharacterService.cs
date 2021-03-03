@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using dotnet_rpg.Models;
 
 namespace dotnet_rpg.Data {
-    public class SqlCharacterRepo : ICharacterRepo {
+    public class CharacterService : ICharacterService {
 
         private readonly CharacterContext _context;
-        public SqlCharacterRepo(CharacterContext context) {
+        public CharacterService(CharacterContext context) {
             _context = context;
         }
 
@@ -20,12 +21,12 @@ namespace dotnet_rpg.Data {
            _context.Characters.Add(cmd);
         }
 
-        public IEnumerable<Character> GetAllCharacters()
+        public async Task<IEnumerable<Character>> GetAllCharacters()
         {
-            return _context.Characters.ToList();
+            return   _context.Characters.ToList();
         }
 
-        public Character GetCharacterById(int id)
+        public async Task<Character> GetCharacterById(int id)
         {
             return _context.Characters.FirstOrDefault(p => p.Id == id);
         }

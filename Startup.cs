@@ -32,7 +32,7 @@ namespace dotnet_rpg
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddDbContext<CharacterContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("CharacterConnection")));
-            services.AddScoped<ICharacterRepo, MockCharacterRepo>();
+            services.AddScoped<ICharacterService, CharacterService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "dotnet_rpg", Version = "v1" });
