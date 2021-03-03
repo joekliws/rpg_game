@@ -44,6 +44,8 @@ namespace dotnet_rpg.Controllers {
          var characterModel = _mapper.Map<Character>(characterCreateDTO);
          _repository.CreateCharacter(characterModel);
          _repository.SaveChanges();
+
+         return Created()
      }
      
  }
