@@ -3,7 +3,7 @@ using dotnet_rpg.Models;
 
 namespace  dotnet_rpg.Data
 {
-    public class MockCharacterRepo : ICharacterService
+    public class MockCharacterRepo
     {
         public void CreateCharacter(Character cmd)
         {
