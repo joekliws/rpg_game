@@ -22,6 +22,14 @@ namespace dotnet_rpg.Services {
         
         }
 
+        public void DeleteCharacter(Character cmd)
+        {
+             if(cmd == null) {
+               throw new ArgumentNullException(nameof(cmd));
+           }
+           _context.Characters.Remove(cmd);
+        }
+
         public IEnumerable<Character> GetAllCharacters()
         {
             return _context.Characters ;
@@ -35,6 +43,11 @@ namespace dotnet_rpg.Services {
         public bool SaveChanges()
         {
            return (_context.SaveChanges() >= 0);
+        }
+
+        public void UpdateCharacter(Character cmd)
+        {
+            //do nothing
         }
     }
 }

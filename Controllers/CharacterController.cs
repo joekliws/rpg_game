@@ -46,7 +46,33 @@ namespace dotnet_rpg.Controllers {
          _repository.CreateCharacter(characterModel);
           _repository.SaveChanges();
 
-         return Ok(characterModel);
+         return Created("http://localhost:5000/characters",characterModel);
+     }
+     [HttpDelete("{id}")]
+     public ActionResult<CharacterReadDTO> DeleteCharacter(int id) {
+        var character = _repository.GetCharacterById(id);
+        if(character == null)
+        {
+         return NotFound();
+        }
+        _repository.DeleteCharacter(character);
+        _repository.SaveChanges();
+         return NoContent();
+     }
+
+     [HttpPut("{id}")]
+     public ActionResult<CharacterReadDTO> UpdateCharacter(int id, CharacterCreateDTO updatedCharacter) 
+     {
+          var character = _repository.GetCharacterById(id);
+        if(character == null)
+        {
+         return NotFound();
+        }
+        _mapper.Map(updatedCharacter, character);
+        _repository.UpdateCharacter(character);
+        
+        _repository.SaveChanges();
+         return Ok(character);
      }
      
  }
