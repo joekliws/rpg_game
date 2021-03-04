@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using dotnet_rpg.Models;
+using dotnet_rpg.Data;
+using dotnet_rpg.Dtos;
 
-namespace dotnet_rpg.Data {
+namespace dotnet_rpg.Services {
     public class CharacterService : ICharacterService {
 
         private readonly CharacterContext _context;
@@ -17,16 +18,16 @@ namespace dotnet_rpg.Data {
            if(cmd == null) {
                throw new ArgumentNullException(nameof(cmd));
            }
-
-           _context.Characters.Add(cmd);
+            _context.Characters.Add(cmd);
+        
         }
 
-        public async Task<IEnumerable<Character>> GetAllCharacters()
+        public IEnumerable<Character> GetAllCharacters()
         {
-            return   _context.Characters.ToList();
+            return _context.Characters ;
         }
 
-        public async Task<Character> GetCharacterById(int id)
+        public Character GetCharacterById(int id)
         {
             return _context.Characters.FirstOrDefault(p => p.Id == id);
         }

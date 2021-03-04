@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using dotnet_rpg.Models;
 
 namespace dotnet_rpg.Dtos
